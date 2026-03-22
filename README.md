@@ -1,26 +1,25 @@
-Installation information
-=======
+# Action Panel / 快捷战术轮盘
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided
-by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+<h1 align=center>✨可能是最强大的 Minecraft 战术轮盘模组！✨</h1>
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is
-either IntelliJ IDEA or Eclipse.
+---
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything
-{this does not affect your code} and then start the process again.
+> 纯周末开发，还没写完（
+> 
+> 目前仅有全存档收发点功能以及只有两个信号（已开放注册器）
+> 
+> **欢迎前往 Workflow 获取最新版本来体验本模组！**
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+Action Panel 是一个为 Minecraft 设计的实用模组，旨在通过可自定义的战术轮盘增强游戏交互体验。玩家可以在游戏中快速发送快捷指令和快捷功能，提升团队交流效率。
 
-Additional Resources:
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+## 核心玩法
+
+- [ ] **自定义战术轮盘组**：玩家可以创建多个战术轮盘组，并在其中添加各种信号。
+- [x] **强大功能绑定**：每个标点信号可绑定特定的游戏内动作，例如执行命令、生成实体等。
+- [ ] **实时交互支持**：支持与 KubeJS 等脚本模组联动，实现动态内容更新，还有生命周期事件支持。
+- [ ] **服务端绝对设计**：所有内容都运行在服务端，客户端仅用于显示与运行客户端专属逻辑。
+
+## 使用方式
+
+1. 在游戏内按默认键 `V` 打开 Action Panel 轮盘。
+2. 鼠标移动到指定位置，松开 `V` 以发送标点。
