@@ -1,0 +1,10 @@
+{
+  "action_panel.midnightconfig.title": "Action Panel Interface Configuration page",
+  "action_panel.midnightconfig.expiration_time_mills": "Expiration time for points (milliseconds)",
+  "point.normal.name": "Pay Attention Here",
+  "point.normal.description": "Alert teammates to pay attention here",
+  "point.normal.message": "Pay attention here!",
+  "point.enemy.name": "Enemy Alert",
+  "point.enemy.description": "Notify teammates of enemy traces detected",
+  "point.enemy.message": "Enemy detected!"
+}

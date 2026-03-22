@@ -1,0 +1,10 @@
+{
+  "action_panel.midnightconfig.title": "快捷标点界面 配置页",
+  "action_panel.midnightconfig.expiration_time_mills": "标点过期时间（毫秒）",
+  "point.normal.name": "注意这里",
+  "point.normal.description": "让队友注意这里",
+  "point.normal.message": "注意这里！",
+  "point.enemy.name": "注意敌人",
+  "point.enemy.description": "通知队友发现敌人痕迹",
+  "point.enemy.message": "注意敌人！"
+}

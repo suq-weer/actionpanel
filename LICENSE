@@ -1,0 +1,46 @@
+                    GNU LESSER GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+
+
+This version of the GNU Lesser General Public License incorporates the terms and conditions of version 3 of the GNU General Public License, supplemented by the additional permissions listed below.
+
+0. Additional Definitions.
+
+As used herein, "this License" refers to version 3 of the GNU Lesser General Public License, and the "GNU GPL" refers to version 3 of the GNU General Public License.
+
+"The Library" refers to a covered work governed by this License, other than an Application or a Combined Work as defined below.
+
+An "Application" is any work that makes use of an interface provided by the Library, but which is not otherwise based on the Library. Defining a subclass of a class defined by the Library is deemed a mode of using an interface provided by the Library.
+
+A "Combined Work" is a work produced by recombining or relinking the Library with a work that is not covered by the Library, resulting in a larger program.
+
+1. Exception to Section 3 of the GNU GPL.
+
+You may convey a work based on the Library, or the modifications to produce it from the Library, under the terms of your choice, provided that you also meet the requirements of Section 4 of the GNU GPL for that work.
+
+2. Exception to Section 4 of the GNU GPL.
+
+When conveying a Combined Work, you may place restrictions on its further propagation that are not incompatible with the requirements of this License.
+
+3. Object Code Incorporating Material from Library Header Files.
+
+The object code form of an Application may incorporate material from a header file that is part of the Library. You may convey such object code under terms of your choice, provided that, if the incorporated material is not limited to numerical parameters, data structure layouts, accessors, or small macros, then you must:
+
+a) Convey the Minimal Corresponding Source under the terms of this License, and the Corresponding Application Code in a form suitable for linking with the Library.
+
+b) Accompany the work with a written offer, valid for at least three years, to give the recipient all the materials needed to rebuild the work using the Library.
+
+c) If the work is conveyed via physical product, accompany it with a copy of the written offer.
+
+d) Do not restrict reverse engineering of the work beyond what is allowed by applicable law.
+
+4. Combined Works.
+
+You may convey a Combined Work under terms of your choice that, taken together, do not restrict modification of the portions of the Library contained in the Combined Work and reverse engineering for debugging such modifications.
+
+5. Limited Warranty and Disclaimer.
+
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE LIBRARY IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
