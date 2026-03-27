@@ -21,8 +21,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 import top.xiaosuoaa.actionpanel.point.PointData;
-import top.xiaosuoaa.actionpanel.point.entity.EnemyPoint;
-import top.xiaosuoaa.actionpanel.point.entity.NormalPoint;
+import top.xiaosuoaa.actionpanel.point.entity.*;
 import top.xiaosuoaa.actionpanel.util.ResUtil;
 
 import java.util.function.Supplier;
@@ -40,6 +39,12 @@ public class PointRegister {
 
 	public static final Supplier<NormalPoint> DEFAULT_POINT = POINTS.register("default_point", NormalPoint::new);
 	public static final Supplier<EnemyPoint> ENEMY_POINT = POINTS.register("enemy_point", EnemyPoint::new);
+	public static final Supplier<MovePoint> MOVE_POINT = POINTS.register("move_point", MovePoint::new);
+	public static final Supplier<AttackPoint> ATTACK_POINT = POINTS.register("attack_point", AttackPoint::new);
+	public static final Supplier<DangerPoint> DANGER_POINT = POINTS.register("danger_point", DangerPoint::new);
+	public static final Supplier<ItemPoint> ITEM_POINT = POINTS.register("item_point", ItemPoint::new);
+	public static final Supplier<AssemblePoint> ASSEMBLE_POINT = POINTS.register("assemble_point", AssemblePoint::new);
+	public static final Supplier<MachinePoint> MACHINE_POINT = POINTS.register("machine_point", MachinePoint::new);
 
 	public static void registerRegistry(NewRegistryEvent event) {
 		event.register(POINT_REGISTRY);

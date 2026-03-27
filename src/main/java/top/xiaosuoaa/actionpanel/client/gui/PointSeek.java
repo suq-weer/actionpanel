@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import top.xiaosuoaa.actionpanel.ActionPanelClient;
 import top.xiaosuoaa.actionpanel.client.point.PointClient;
 import top.xiaosuoaa.actionpanel.client.util.gui.GUIPosition;
+import top.xiaosuoaa.actionpanel.config.MainConfig;
 import top.xiaosuoaa.actionpanel.point.PointData;
 import top.xiaosuoaa.actionpanel.point.Signal;
 
@@ -37,9 +38,6 @@ import static top.xiaosuoaa.actionpanel.ActionPanelClient.signalDisplayer;
 public class PointSeek {
 	private static final Logger LOGGER = LogUtils.getLogger();
 	private static final Minecraft MINECRAFT = Minecraft.getInstance();
-
-	// 信号图标大小
-	private static final int ICON_SIZE = 32;
 
 	public PointSeek(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
 		commonRender(guiGraphics);
@@ -167,9 +165,11 @@ public class PointSeek {
 		ResourceLocation icon = pointClient.getIcon();
 		ResourceLocation background = pointClient.getTintedIcon();
 
+		int point_scale = MainConfig.point_scale;
+
 		// 计算绘制区域（以图标为中心）
-		int x = pos.x() - ICON_SIZE / 2;
-		int y = pos.y() - ICON_SIZE / 2;
+		int x = pos.x() - point_scale / 2;
+		int y = pos.y() - point_scale / 2;
 
 		int centerX = MINECRAFT.getWindow().getWidth() / 2;
 		int centerY = MINECRAFT.getWindow().getScreenHeight() / 2;
@@ -188,14 +188,14 @@ public class PointSeek {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
 
 		// 渲染背景框
-		guiGraphics.blit(background, x, y, ICON_SIZE, ICON_SIZE, 0, 0, 64, 64, 64, 64);
+		guiGraphics.blit(background, x, y, point_scale, point_scale, 0, 0, 64, 64, 64, 64);
 
 		// 渲染图标
 		if (icon != null) {
 			guiGraphics.blit(
 					icon,
 					x, y,
-					ICON_SIZE, ICON_SIZE,
+					point_scale, point_scale,
 					0, 0,
 					64, 64,
 					64, 64

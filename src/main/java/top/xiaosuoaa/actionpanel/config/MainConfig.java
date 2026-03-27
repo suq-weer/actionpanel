@@ -19,10 +19,23 @@ import eu.midnightdust.lib.config.MidnightConfig;
 public class MainConfig extends MidnightConfig {
 	public static final String GENERAL = "General";
 	public static final String SERVER = "Server";
+	public static final String CLIENT = "Client";
 
+	// 服务器配置项
+	@Comment(category = SERVER)
+	public static String server_category_description;
 	/**
 	 * 信号点过期时间，单位毫秒
 	 */
 	@Entry(category = SERVER)
 	public static int expiration_time_mills = 60000;
+
+	// 客户端配置项
+	@Comment(category = CLIENT)
+	public static String client_category_description;
+	/**
+	 * 信号点大小，单位像素
+	 */
+	@Entry(category = CLIENT)
+	public static int point_scale = 16;
 }

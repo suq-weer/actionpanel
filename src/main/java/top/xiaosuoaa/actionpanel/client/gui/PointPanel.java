@@ -49,7 +49,13 @@ public class PointPanel {
 	private static final List<ResourceLocation> pointDataList = List.of(
 			// TEST
 			ResUtil.getRes("default_point"),
-			ResUtil.getRes("enemy_point")
+			ResUtil.getRes("enemy_point"),
+			ResUtil.getRes("move_point"),
+			ResUtil.getRes("attack_point"),
+			ResUtil.getRes("danger_point"),
+			ResUtil.getRes("item_point"),
+			ResUtil.getRes("assemble_point"),
+			ResUtil.getRes("machine_point")
 	);
 	// - 动画总时长
 	private final static long END_MILL_TIME = 260;
@@ -77,6 +83,7 @@ public class PointPanel {
 	}
 
 	public static void releaseKey(int sector) {
+		// sector 为 0 时不触发任何信号（取消操作）
 		if (sector > 0 && sector <= pointDataList.size()) {
 			signalDisplayer.sendSignal(POINT_REGISTRY.get(pointDataList.get(sector - 1)));
 		}
@@ -98,12 +105,17 @@ public class PointPanel {
 
 		// 如果鼠标向量为零，则不进行方向判断
 		if (mouseVector.length() == 0) {
+			sector = 0;
+			// 同步更新全局状态
+			ActionPanelClient.setCurrentSector(0);
 			return;
 		}
-		// 如果鼠标与原始中心点距离小于40，将sector设置为0
+		// 如果鼠标与原始中心点距离小于 40，将 sector 设置为 0（取消区域）
 		double distance = Math.sqrt(Math.pow(mouseX - centerOriginalX, 2) + Math.pow(mouseY - centerOriginalY, 2));
 		if (distance < 40) {
 			sector = 0;
+			// 同步更新全局状态
+			ActionPanelClient.setCurrentSector(0);
 			return;
 		}
 
@@ -156,10 +168,7 @@ public class PointPanel {
 		// Point1
 		int block1X = centerX - (LENGTH / 2) - LENGTH - PADDING;
 		int block1Y = centerY - (LENGTH / 2) - LENGTH - PADDING;
-		GUIAnimationUtil.transitionEaseInOutQuad(pos -> {
-					backGroundBlock(guiGraphics, pos, 1);
-					renderRenderedPoint(pointDataList.getFirst(), guiGraphics, pos, 1);
-				},
+		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(pointDataList.getFirst(), guiGraphics, pos, 1),
 				centerBlockX, centerBlockY, // start
 				block1X, block1Y, // end
 				(int) END_MILL_TIME, (int) accumulatedTime // time
@@ -168,10 +177,7 @@ public class PointPanel {
 		// Point2
 		int block2X = centerX - (LENGTH / 2);
 		int block2Y = centerY - (LENGTH / 2) - LENGTH - PADDING;
-		GUIAnimationUtil.transitionEaseInOutQuad(pos -> {
-					backGroundBlock(guiGraphics, pos, 2);
-					renderRenderedPoint(pointDataList.get(1), guiGraphics, pos, 2);
-				},
+		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(pointDataList.get(1), guiGraphics, pos, 2),
 				centerBlockX, centerBlockY,
 				block2X, block2Y,
 				(int) END_MILL_TIME, (int) accumulatedTime
@@ -180,7 +186,7 @@ public class PointPanel {
 		// Point3
 		int block3X = centerX + (LENGTH / 2) + PADDING;
 		int block3Y = centerY - (LENGTH / 2) - LENGTH - PADDING;
-		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(guiGraphics, pos, 3),
+		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(pointDataList.get(2), guiGraphics, pos, 3),
 				centerBlockX, centerBlockY,
 				block3X, block3Y,
 				(int) END_MILL_TIME, (int) accumulatedTime
@@ -189,7 +195,7 @@ public class PointPanel {
 		// Point4
 		int block4X = centerX - (LENGTH / 2) - LENGTH - PADDING;
 		int block4Y = centerY - (LENGTH / 2);
-		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(guiGraphics, pos, 4),
+		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(pointDataList.get(3), guiGraphics, pos, 4),
 				centerBlockX, centerBlockY,
 				block4X, block4Y,
 				(int) END_MILL_TIME, (int) accumulatedTime
@@ -198,7 +204,7 @@ public class PointPanel {
 		// Point5
 		int block5X = centerX + (LENGTH / 2) + PADDING;
 		int block5Y = centerY - (LENGTH / 2);
-		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(guiGraphics, pos, 5),
+		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(pointDataList.get(4), guiGraphics, pos, 5),
 				centerBlockX, centerBlockY,
 				block5X, block5Y,
 				(int) END_MILL_TIME, (int) accumulatedTime
@@ -207,7 +213,7 @@ public class PointPanel {
 		// Point6
 		int block6X = centerX - (LENGTH / 2) - LENGTH - PADDING;
 		int block6Y = centerY + (LENGTH / 2) + PADDING;
-		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(guiGraphics, pos, 6),
+		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(pointDataList.get(5), guiGraphics, pos, 6),
 				centerBlockX, centerBlockY,
 				block6X, block6Y,
 				(int) END_MILL_TIME, (int) accumulatedTime
@@ -216,7 +222,7 @@ public class PointPanel {
 		// Point7
 		int block7X = centerX - (LENGTH / 2);
 		int block7Y = centerY + (LENGTH / 2) + PADDING;
-		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(guiGraphics, pos, 7),
+		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(pointDataList.get(6), guiGraphics, pos, 7),
 				centerBlockX, centerBlockY,
 				block7X, block7Y,
 				(int) END_MILL_TIME, (int) accumulatedTime
@@ -225,7 +231,7 @@ public class PointPanel {
 		// Point8
 		int block8X = centerX + (LENGTH / 2) + PADDING;
 		int block8Y = centerY + (LENGTH / 2) + PADDING;
-		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(guiGraphics, pos, 8),
+		GUIAnimationUtil.transitionEaseInOutQuad(pos -> renderPointBlock(pointDataList.get(7), guiGraphics, pos, 8),
 				centerBlockX, centerBlockY,
 				block8X, block8Y,
 				(int) END_MILL_TIME, (int) accumulatedTime
@@ -258,9 +264,9 @@ public class PointPanel {
 		renderText(point.getPointData().displayName(), guiGraphics, pos, number);
 	}
 
-	private void renderPointBlock(GuiGraphics guiGraphics, GUIPosition pos, int number) {
+	private void renderPointBlock(ResourceLocation pointData, GuiGraphics guiGraphics, GUIPosition pos, int number) {
 		backGroundBlock(guiGraphics, pos, number);
-		renderText(Component.literal("无信号点"), guiGraphics, pos, number);
+		renderRenderedPoint(pointData, guiGraphics, pos, number);
 	}
 
 	private void renderText(Component name, GuiGraphics guiGraphics, GUIPosition pos, int number) {
@@ -279,6 +285,7 @@ public class PointPanel {
 
 	private void renderCancelBlock(GuiGraphics guiGraphics, GUIPosition pos) {
 		backGroundBlock(guiGraphics, pos, 0);
+		renderText(Component.translatable("actionpanel.cancel"), guiGraphics, pos, 0);
 	}
 
 	private void backGroundBlock(GuiGraphics guiGraphics, GUIPosition pos, int number) {
@@ -290,5 +297,7 @@ public class PointPanel {
 		accumulatedTime = 0;
 		lastFrameTime = 0;
 		sector = 0;
+		// 同步更新全局状态
+		ActionPanelClient.setCurrentSector(0);
 	}
 }
